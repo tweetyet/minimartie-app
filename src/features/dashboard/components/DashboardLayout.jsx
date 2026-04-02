@@ -4,7 +4,7 @@ import Header from "./Header";
 import { Toaster } from "react-hot-toast";
 import useCookie from "react-use-cookie";
 import useUserStore from "../../../stores/useUserStore";
-import { set } from "lodash";
+import { Suspense } from "react";
 
 const DashboardLayout = () => {
   const [token] = useCookie("my_token");
@@ -22,7 +22,7 @@ const DashboardLayout = () => {
   return (
     <main className=" flex flex-col min-h-screen p-5">
       <Header />
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}><Outlet /></Suspense>
       <Toaster position="top-right" />
     </main>
   );
