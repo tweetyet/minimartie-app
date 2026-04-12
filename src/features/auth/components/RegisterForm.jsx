@@ -10,7 +10,7 @@ const RegisterForm = () => {
         register,
         handleSubmit,
         watch,
-        formState: { errors },
+        formState: { isSubmitting },
       } = useForm();
     
       const handleRegister = async (data) => {
@@ -130,9 +130,10 @@ const RegisterForm = () => {
     
               <button
                 type="submit"
-                className="w-full text-white bg-[#A16207]/90 hover:bg-[#A16207] focus:ring-4 focus:outline-none focus:ring-[#A16207]/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-lg"
+                disabled={isSubmitting}
+                className="w-full flex justify-center items-center text-white bg-[#A16207]/90 hover:bg-[#A16207] focus:ring-4 focus:outline-none focus:ring-[#A16207]/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-lg"
               >
-                Create an account
+                {isSubmitting ? <ButtonSpinner /> : "Create an account"}
               </button>
     
               <p className="text-sm font-light text-[#A16207]/80">

@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useCookie from"react-use-cookie";
 
 const Header = () => {
+
+  const [user]= useCookie("user");
   return (
     <header className="border-b-2 border-[#A16207] sticky top-0  bg-white">
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
@@ -16,19 +19,49 @@ const Header = () => {
               MiniMartie App
             </span>
           </Link>
-          <div className="flex items-center lg:order-2">
+
+           <div className="flex items-center lg:order-2">
+            {!user ? (
+              <>
+                 <Link
+              to="login"
+              className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-[#A16207] font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+            >
+              Log in
+            </Link>
+                <Link
+                  to="/register"
+                  className="text-white bg-[#A16207] hover:bg-[#A16207] focus:ring-4 focus:ring-[#A16207] font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-[#A16207] dark:hover:bg-[#A16207] focus:outline-none dark:focus:ring-[#A16207]"
+                >
+                  Register
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/dashboard"
+                  className="text-white bg-[#A16207] hover:bg-[#A16207] focus:ring-4 focus:ring-[#A16207] font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-[#A16207] dark:hover:bg-[#A16207] focus:outline-none dark:focus:ring-[#A16207]"
+                >
+                  {`${JSON.parse(user).name}'s Dashboard`}
+                </Link>
+              </>
+            )}
+
+
+          {/* <div className="flex items-center lg:order-2">
             <Link
               to="login"
               className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-[#A16207] font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
             >
               Log in
             </Link>
-            <a
-              href="#"
+            <Link
+              to="register"
+          
               className="text-gray-800 bg-[#A16207] hover:bg-[#A16207] focus:ring-4 focus:ring-[#A16207] font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-[#A16207] dark:hover:bg-[#A16207] focus:outline-none dark:focus:ring-[#A16207]"
             >
-              Get started
-            </a>
+              Register
+            </Link> */}
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"

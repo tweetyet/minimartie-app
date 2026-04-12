@@ -3,6 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import useCookie from "react-use-cookie";
 import { login } from "../../../services/auth";
+import ButtonSpinner from "../../../components/ButtonSpinner";
 
 const LoginForm = () => {
 
@@ -100,10 +101,11 @@ const LoginForm = () => {
                 </a>
               </div>
               <button
-                type="submit"
+                type="submit" disabled={isSubmitting}
                 className="w-full text-white bg-[#A16207] hover:bg-[#A16207]-700 focus:ring-4 focus:outline-none focus:ring-[#A16207]-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#A16207]-600 dark:hover:bg-[#A16207]-700 dark:focus:ring-[#A16207]-800"
               >
                 Sign in
+                {isSubmitting && <span className="ml-2"><ButtonSpinner /></span>}
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don’t have an account yet?{" "}

@@ -9,7 +9,7 @@ const ShowDateTime = ({ timestamp }) => {
     year: "numeric",
   });
   const currentTime = date.toLocaleTimeString("en-GB", {
-    hour: "hour",
+    hour: "numeric",
     minute: "2-digit",
     hour12: true,
   });

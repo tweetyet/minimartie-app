@@ -11,7 +11,7 @@ const productRoute = [
         element: <ProductListPage />
     },
     {
-        path: 'products/create',
+        path: 'product-create',
         element: <ProductCreatePage />
     },
     {

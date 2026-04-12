@@ -1,52 +1,27 @@
-import  { useState } from "react";
 import { HiSearch } from "react-icons/hi";
-import {
- 
-  HiPlus,
-
-} from "react-icons/hi2";
-import useSWR from "swr";
-
+import { HiPlus } from "react-icons/hi2";
 import { Link } from "react-router-dom";
-import { debounce } from "lodash";
-// import Pagination from "./Pagination";
-import useCookie from "react-use-cookie";
 import ProductLoader from "./ProductLoader";
-import ProductRow from "./ProductRow";
 import ProductEmptyState from "./ProductEmptyState";
-import { fetchProducts } from "../../../services/product";
+import ProductRow from "./ProductRow";
 import Pagination from "../../../components/Pagination";
+import Sortable from "../../../components/Sortable";
+import useProduct from "../hooks/useProduct";
+// import useProduct from "../hooks/useProduct";
 
 const ProductTable = () => {
-  // const [search, setSearch] = useState("");
-
-  const [token] = useCookie("my_token");
-
-  const [fetchUrl, setFetchUrl] = useState(
-    "https://invoice-app-api.mms-it.com/api/v2/dashboard/products"
-  );
-
-
-
-  const { data, isLoading, error } = useSWR(fetchUrl, fetchProducts);
-
-  const handleSearchInput = debounce((e) => {
-    console.log(e.target.value);
-    // setSearch(e.target.value);
-    setFetchUrl(`https://invoice-app-api.mms-it.com/api/v2/dashboard/products?q=${e.target.value}`);
-  }, 500);
-
-  const updateFetchUrl = (url) => {
-    setFetchUrl(url);
-  };
-
-  // if (isLoading) return <p>Loading...</p>;
-
-  // console.log(data);
+  const {
+    searchRef,
+    data,
+    isLoading,
+    handleSearchInput,
+    updateFetchUrl,
+    handleSort,
+  } = useProduct();
 
   return (
     <div>
-      <div className=" flex justify-between mb-3">
+      <div className="flex justify-between mb-3">
         <div className="">
           <div className="relative mb-6">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
@@ -54,17 +29,17 @@ const ProductTable = () => {
             </div>
             <input
               type="text"
-              className="bg-gray-50 border border-gray-300 text-stone-900 text-sm rounded-lg focus:ring-[#A16207] focus:border-[#A16207] block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#A16207] dark:focus:border-[#A16207]"
+              className="bg-gray-50 border border-gray-300 text-stone-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Search Product"
-              // value={search}
               onChange={handleSearchInput}
+              ref={searchRef}
             />
           </div>
         </div>
         <div className="">
           <Link
-            to="/product/create"
-            className="text-white flex justify-center items-center gap-3 bg-[#A16207] hover:bg-[#8B4513] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-[#8B4513] dark:focus:ring-[#8B4513]/50 "
+            to="/dashboard/product-create"
+            className="text-white flex justify-center items-center gap-3 bg-[#A16207] hover:bg-[#8B4513] focus:ring-4 focus:outline-none focus:ring-[#A16207] font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-[#A16207] dark:hover:bg-[#8B4513] dark:focus:ring-[#A16207]"
           >
             Add new Product
             <HiPlus />
@@ -76,14 +51,24 @@ const ProductTable = () => {
           <thead className="text-xs text-stone-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-stone-400">
             <tr>
               <th scope="col" className="px-6 py-3">
-                #
+                <Sortable handleSort={handleSort} sort_by={`id`}>
+                  #
+                </Sortable>
               </th>
               <th scope="col" className="px-6 py-3">
-                Product name
+                <Sortable handleSort={handleSort} sort_by={`product_name`}>
+                  Product name
+                </Sortable>
               </th>
 
               <th scope="col" className="px-6 py-3 text-end">
-                Price
+                <Sortable
+                  handleSort={handleSort}
+                  sort_by={`price`}
+                  align={"right"}
+                >
+                  Price
+                </Sortable>
               </th>
               <th scope="col" className="px-6 py-3 text-end">
                 Created At
@@ -109,13 +94,13 @@ const ProductTable = () => {
           </tbody>
         </table>
       </div>
-      {!isLoading && data &&(
+      {
         <Pagination
           links={data?.links}
           meta={data?.meta}
           updateFetchUrl={updateFetchUrl}
         />
-      )}
+      }
     </div>
   );
 };

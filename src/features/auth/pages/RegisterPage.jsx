@@ -12,8 +12,9 @@ const RegisterPage = () => {
     <section className="dark:bg-gray-900">
   <Toaster />
   <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-    <a
-      href="#"
+    <Link
+      to="/"
+   
       className="flex items-center mb-6 text-2xl font-semibold text-[#A16207]"
     >
       <img
@@ -22,7 +23,7 @@ const RegisterPage = () => {
         alt="logo"
       />
      Minimartie App 
-    </a>
+    </Link>
 
     <div className="w-full backdrop-blur-xl bg-white/30 border border-[#A16207]/30 rounded-2xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0">
       <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
