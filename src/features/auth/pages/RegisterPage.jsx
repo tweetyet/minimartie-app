@@ -19,7 +19,7 @@ const RegisterPage = () => {
     >
       <img
         className="size-14 mr-2"
-        src="../../public/logo.png"
+        src="/logo.png"
         alt="logo"
       />
      Minimartie App 

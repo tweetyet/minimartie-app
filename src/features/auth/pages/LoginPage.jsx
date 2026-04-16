@@ -14,7 +14,7 @@ function LoginPage() {
         >
           <img
             className="size-13 mr-2 "
-            src="../../public/logo.png"
+            src="/logo.png"
             alt="logo"
           />
           MiniMartie App
