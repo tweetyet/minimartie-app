@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { register as accountRegister } from "../../../services/auth";
+import ButtonSpinner from "../../../components/ButtonSpinner";
 const RegisterForm = () => {
 
      const navigate = useNavigate();

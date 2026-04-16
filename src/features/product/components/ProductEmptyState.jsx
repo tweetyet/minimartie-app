@@ -6,7 +6,7 @@ const ProductEmptyState = () => {
       <td colSpan={5} className="px-6 py-4 text-center">
         There is no Product
         <Link
-          to="/dashboard/products-create"
+          to="/dashboard/product-create"
           className="text-[#A16207] hover:text-[#8B4513]"
         >
           Add one

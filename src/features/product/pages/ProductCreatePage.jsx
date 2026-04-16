@@ -1,12 +1,12 @@
 import Container from "../../../components/Container";
-import BreadCrumb from "../../../components/BreadCrumb";
+import Breadcrumb from "../../../components/Breadcrumb";
 import ProductCreateForm from"../../product/components/ProductCreateForm";
 
 const ProductCreatePage = () => {
   return (
     <section>
       <Container>
-        <BreadCrumb
+        <Breadcrumb
           currentPageTitle={"Create Product"}
           links={[{ title: "Product Module", path: "/dashboard/products" }]}
         />
