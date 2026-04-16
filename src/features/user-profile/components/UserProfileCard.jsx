@@ -23,7 +23,7 @@ const UserProfileCard = () => {
               src={
                 profile_image
                   ? profile_image
-                  : "../../public/user3.jpeg"
+                  : "/user3.jpeg"
               }
               alt="user photo"
             />

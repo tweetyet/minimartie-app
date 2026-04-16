@@ -22,7 +22,7 @@ const Header = () => {
               src={
                 profile_image
                   ? profile_image
-                  : "../../public/user3.jpeg"
+                  : "/user3.jpeg"
               }
               alt="user photo"
               className="border-2 border-white shadow-sm size-12 rounded-full object-cover object-top"
