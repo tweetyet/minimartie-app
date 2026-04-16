@@ -30,7 +30,7 @@ const HeroSection = () => {
           </svg>
         </a>
         <div>
-          <img src="../../public/Ec.png" className='size-45 flex mx-auto mb-3' alt="" />
+          <img src="/Ec.png" className='size-45 flex mx-auto mb-3' alt="" />
         <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
           Smart Shopping for Your Daily Needs
         </h1>
